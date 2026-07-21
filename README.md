@@ -1,37 +1,83 @@
 Smoke and Fire Alarm System with GSM SMS Notification
 
-Summary
-- This version is converted from the original Wi-Fi/cloud-SMS design to use a GSM module (for example a SIM800L or SIM900) connected to an Arduino Uno.
-- The sketch monitors a flame sensor and an MQ-2 smoke sensor, triggers a buzzer/LED alarm, and sends an SMS through the GSM module.
+Overview
+This project implements a local smoke and flame alarm using an Arduino and a GSM module to send SMS alerts. It reads an MQ-2 smoke/gas sensor and a flame sensor, activates a local buzzer and LEDs on alarm, and sends a configurable SMS message to a preset phone number.
 
-Required Hardware
-- Arduino Uno (or another AVR-based Arduino compatible with SoftwareSerial)
-- GSM module such as SIM800L / SIM900
-- MQ-2 smoke/gas sensor
-- Flame sensor
+Key Features
+- Local audible and visual alarm (buzzer + LEDs)
+- Remote SMS notification via SIM800L / SIM900 (or similar)
+- Simple pin-based configuration suitable for Arduino Uno and similar boards
+- PlatformIO project structure (PlatformIO and Arduino IDE friendly)
+
+Hardware Requirements
+- Arduino Uno (or any 5V Arduino compatible with SoftwareSerial)
+- GSM module (SIM800L, SIM900, etc.) with an active SIM card capable of sending SMS
+- MQ-2 Smoke/Gas sensor
+- Flame sensor (analog or digital module variant)
 - 5V active buzzer
-- Red LED and Green LED
-- 220Ω resistors for the LEDs
-- Breadboard and jumper wires
-- SIM card with SMS service
+- 2 LEDs (red and green) and two 220Ω resistors
+- Stable power supply for GSM module (external 4V–4.2V for SIM800L recommended) and common grounds
+- Breadboard, jumper wires, optional level shifting if required by your GSM module
 
-Wiring
-- Smoke sensor -> digital pin 2
-- Flame sensor -> digital pin 6
-- Green LED -> digital pin 3 (with resistor to GND)
-- Red LED -> digital pin 5 (with resistor to GND)
+Software Requirements
+- PlatformIO (recommended) or the Arduino IDE
+- USB cable for programming the Arduino
+
+Wiring (default pins used in this project)
+- Smoke sensor DATA -> digital pin 2
 - Buzzer -> digital pin 4
-- GSM module TX -> digital pin 7
-- GSM module RX -> digital pin 8
-- GSM module VCC/GND -> proper power source (often 4V for SIM800L, check your module)
+- Red LED (alarm) -> digital pin 5 (through 220Ω resistor to GND)
+- Green LED (status) -> digital pin 3 (through 220Ω resistor to GND)
+- Flame sensor -> digital pin 6
+- GSM TX -> digital pin 7 (to Arduino RX pin used by SoftwareSerial)
+- GSM RX -> digital pin 8 (to Arduino TX pin used by SoftwareSerial)
+- GSM VCC/GND -> external power (ensure correct voltage and sufficient current)
 
-Software & Configuration
-1. Open src/main.cpp and replace the placeholder phone number:
-   - phoneNumber = "YOUR_PHONE_NUMBER"
-2. Make sure your GSM module is powered correctly and uses the same baud rate as the sketch (9600).
-3. Build and upload the sketch.
+Quick Start
+1) Configure
+- Edit `src/main.cpp` and set `phoneNumber` to the destination number for alerts (international format recommended).
+- Review any `#define` or `const` pin assignments at the top of the file and change pins if needed.
 
-Notes
-- The code uses SoftwareSerial for the GSM module, which is suitable for Arduino Uno.
-- If your GSM module is not responding, check its power supply, baud rate, and SIM card status.
-- The alarm loop is intentionally blocking so the buzzer keeps sounding until reset.
+2) Build & Upload (PlatformIO)
+```bash
+# from project root
+platformio run --target upload
+```
+
+3) Build & Upload (Arduino IDE)
+- Open `src/main.cpp` in the Arduino IDE, select the correct board and port, and click Upload.
+
+Power Recommendations
+- GSM modules draw significant peak current during transmission (1A+). Use a dedicated power source (LiPo battery or capable DC supply) for the GSM module and do not power it from the Arduino 5V pin unless the power source can handle peaks.
+- Common ground required between Arduino and GSM power supply.
+
+Configuration Notes
+- Baud rate: the sketch assumes 9600 baud for the GSM module. Adjust if your module uses a different default.
+- SoftwareSerial: this project uses `SoftwareSerial` on pins 7/8. For boards with additional hardware serials (e.g., Mega, Leonardo), prefer hardware serial for reliability.
+
+Testing
+- Insert a working SIM with SMS credit and ensure the module registers on the network (check module status LEDs or use AT commands).
+- With the serial monitor open at the configured baud rate, you can observe status and AT command responses printed by the sketch.
+- To simulate events, trigger the flame sensor or set the MQ-2 threshold low to force an alarm.
+
+Troubleshooting
+- GSM module not connected: Confirm TX/RX wiring, baud rate, and that `SoftwareSerial` pins match `src/main.cpp`.
+- No SMS sent: verify SIM has credit, check signal strength, and confirm module accepts AT commands (`AT` -> `OK`).
+- False positives: calibrate MQ-2 sensitivity and debounce the flame sensor if necessary.
+- Power resets or brownouts: provide a stronger power supply to the GSM module and add decoupling capacitors.
+
+Project Layout
+- `platformio.ini` — PlatformIO configuration for building/uploading
+- `src/main.cpp` — Main application sketch (configure `phoneNumber` and pins here)
+- `lib/` — Optional libraries (if present)
+- `include/` — Header files (if present)
+
+Contributing
+- Feel free to open issues or submit pull requests to improve wiring diagrams, support additional boards, or add non-blocking alarm behavior.
+
+License & Contact
+- This project is provided as-is. Add a license file if you want to define reuse terms.
+- For questions, include contact info or open an issue in the repo.
+
+—
+If you want, I can also add a simple wiring diagram, a PlatformIO example `env`, or update `src/main.cpp` to centralize configuration values at the top of the file.
