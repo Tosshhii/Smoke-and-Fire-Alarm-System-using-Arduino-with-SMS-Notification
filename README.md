@@ -38,6 +38,8 @@ Wiring Diagram
 
 Caption: default pin mapping and recommended external GSM power connection. Adjust pins in `src/main.cpp` if your board uses different serial pins.
 
+If the diagram does not render in your viewer (some services block inline SVG), open the raw file directly: [assets/wiring-diagram.svg](assets/wiring-diagram.svg)
+
 Quick Start
 1) Configure
 - Edit `src/main.cpp` and set `phoneNumber` to the destination number for alerts (international format recommended).
