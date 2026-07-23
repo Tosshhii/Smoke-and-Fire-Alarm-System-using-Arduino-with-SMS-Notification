@@ -1,70 +1,78 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520">
   <style>
-    .lbl { font: 12px/1.2 sans-serif; fill: #222; }
-    .device { fill: #f7f7f7; stroke: #333; stroke-width: 1.5px; }
-    .pin { stroke: #444; stroke-width: 1px; }
-    .wire { stroke: #c0392b; stroke-width: 2px; fill: none; }
-    .gnd { stroke: #2c3e50; stroke-width: 2px; }
-    .vcc { stroke: #27ae60; stroke-width: 2px; }
+    .title { font: 16px sans-serif; font-weight: bold; fill: #111; }
+    .label { font: 13px sans-serif; fill: #111; }
+    .comp { fill: #ffffff; stroke: #222; stroke-width: 1.5px; }
+    .wire-red { stroke: #e11d48; stroke-width: 3px; stroke-linecap: round; }
+    .wire-black { stroke: #111; stroke-width: 3px; stroke-linecap: round; }
+    .wire-green { stroke: #16a34a; stroke-width: 3px; stroke-linecap: round; }
+    .pin-dot { fill: #111; }
   </style>
 
-  <!-- Arduino Uno -->
-  <rect x="40" y="40" width="220" height="160" rx="8" class="device" />
-  <text x="150" y="60" text-anchor="middle" class="lbl">Arduino Uno</text>
-  <text x="60" y="90" class="lbl">D2 Smoke</text>
-  <line x1="120" y1="95" x2="240" y2="95" class="wire" />
-  <text x="60" y="115" class="lbl">D3 Green LED</text>
-  <line x1="120" y1="120" x2="360" y2="120" class="wire" />
-  <text x="60" y="140" class="lbl">D4 Buzzer</text>
-  <line x1="120" y1="145" x2="360" y2="145" class="wire" />
-  <text x="60" y="165" class="lbl">D5 Red LED</text>
-  <line x1="120" y1="170" x2="360" y2="170" class="wire" />
-  <text x="60" y="190" class="lbl">D6 Flame</text>
-  <line x1="120" y1="195" x2="360" y2="195" class="wire" />
-  <text x="60" y="215" class="lbl">D7 GSM TX</text>
-  <line x1="120" y1="220" x2="520" y2="220" class="wire" />
-  <text x="60" y="240" class="lbl">D8 GSM RX</text>
-  <line x1="120" y1="245" x2="520" y2="245" class="wire" />
+  <text x="16" y="28" class="title">Wiring Schematic (Arduino Uno)</text>
+
+  <!-- Arduino block -->
+  <rect x="30" y="60" width="260" height="300" rx="8" class="comp" />
+  <text x="160" y="86" text-anchor="middle" class="label">Arduino Uno</text>
+  <!-- Pins list -->
+  <text x="60" y="120" class="label">D2</text>
+  <circle cx="100" cy="116" r="4" class="pin-dot" />
+  <text x="60" y="150" class="label">D3</text>
+  <circle cx="100" cy="146" r="4" class="pin-dot" />
+  <text x="60" y="180" class="label">D4</text>
+  <circle cx="100" cy="176" r="4" class="pin-dot" />
+  <text x="60" y="210" class="label">D5</text>
+  <circle cx="100" cy="206" r="4" class="pin-dot" />
+  <text x="60" y="240" class="label">D6</text>
+  <circle cx="100" cy="236" r="4" class="pin-dot" />
+  <text x="60" y="270" class="label">D7</text>
+  <circle cx="100" cy="266" r="4" class="pin-dot" />
+  <text x="60" y="300" class="label">D8</text>
+  <circle cx="100" cy="296" r="4" class="pin-dot" />
 
   <!-- MQ-2 -->
-  <rect x="320" y="60" width="120" height="60" rx="6" class="device" />
-  <text x="380" y="80" text-anchor="middle" class="lbl">MQ-2</text>
-  <text x="380" y="98" text-anchor="middle" class="lbl">DATA -> D2</text>
+  <rect x="360" y="90" width="160" height="90" rx="6" class="comp" />
+  <text x="440" y="110" text-anchor="middle" class="label">MQ-2 Sensor</text>
+  <text x="440" y="132" text-anchor="middle" class="label">DATA -> D2</text>
+  <!-- Wire D2 -> MQ-2 -->
+  <path d="M104 116 L200 116 L360 136" class="wire-blue" stroke="#0ea5e9" stroke-width="3" fill="none" />
 
-  <!-- LEDs and Buzzer -->
-  <rect x="320" y="110" width="120" height="120" rx="6" class="device" />
-  <text x="380" y="132" text-anchor="middle" class="lbl">LEDs & Buzzer</text>
-  <text x="380" y="152" text-anchor="middle" class="lbl">G: D3  Buzzer: D4</text>
-  <text x="380" y="170" text-anchor="middle" class="lbl">R: D5</text>
-
-  <!-- GSM Module -->
-  <rect x="520" y="180" width="220" height="110" rx="8" class="device" />
-  <text x="630" y="200" text-anchor="middle" class="lbl">GSM Module</text>
-  <text x="640" y="220" class="lbl">TX -> D7</text>
-  <text x="640" y="238" class="lbl">RX -> D8</text>
-  <text x="640" y="256" class="lbl">VCC -> External 4V</text>
-  <text x="640" y="274" class="lbl">GND -> Common GND</text>
+  <!-- LEDs & Buzzer -->
+  <rect x="360" y="200" width="180" height="120" rx="6" class="comp" />
+  <text x="450" y="222" text-anchor="middle" class="label">Green LED (D3) - Buzzer (D4) - Red LED (D5)</text>
+  <!-- Wires from D3/D4/D5 -->
+  <path d="M104 146 L300 146 L360 240" class="wire-green" fill="none" />
+  <path d="M104 176 L300 176 L360 260" class="wire-red" fill="none" />
+  <path d="M104 206 L300 206 L360 280" class="wire-red" fill="none" />
 
   <!-- Flame sensor -->
-  <rect x="320" y="260" width="120" height="60" rx="6" class="device" />
-  <text x="380" y="285" text-anchor="middle" class="lbl">Flame Sensor</text>
-  <text x="380" y="302" text-anchor="middle" class="lbl">DATA -> D6</text>
+  <rect x="360" y="340" width="160" height="80" rx="6" class="comp" />
+  <text x="440" y="362" text-anchor="middle" class="label">Flame Sensor</text>
+  <text x="440" y="382" text-anchor="middle" class="label">DATA -> D6</text>
+  <path d="M104 236 L360 360" class="wire-blue" stroke="#0ea5e9" stroke-width="3" fill="none" />
 
-  <!-- Ground rail -->
-  <line x1="40" y1="320" x2="760" y2="320" class="gnd" />
-  <text x="20" y="320" class="lbl">GND</text>
-  <line x1="520" y1="305" x2="520" y2="240" class="gnd" />
-  <circle cx="520" cy="305" r="3" fill="#2c3e50" />
+  <!-- GSM Module -->
+  <rect x="600" y="160" width="320" height="180" rx="8" class="comp" />
+  <text x="760" y="184" text-anchor="middle" class="label">GSM Module (SIM800L / SIM900)</text>
+  <text x="760" y="206" text-anchor="middle" class="label">TX -> D7 (to Arduino D7)</text>
+  <text x="760" y="226" text-anchor="middle" class="label">RX -> D8 (to Arduino D8)</text>
+  <text x="760" y="246" text-anchor="middle" class="label">VCC -> External 4V supply</text>
+  <text x="760" y="266" text-anchor="middle" class="label">GND -> Common GND</text>
+  <!-- Wires D7/D8 -->
+  <path d="M104 266 L420 266 L600 240" class="wire-black" fill="none" />
+  <path d="M104 296 L420 296 L600 260" class="wire-black" fill="none" />
 
-  <!-- VCC rail (GSM) -->
-  <line x1="520" y1="296" x2="760" y2="296" class="vcc" />
-  <text x="510" y="292" class="lbl">VCC (GSM)</text>
+  <!-- GND and VCC rails -->
+  <rect x="30" y="380" width="900" height="18" fill="#111" />
+  <text x="48" y="394" class="label" fill="#fff">GND (connect Arduino GND, sensors GND, GSM GND)</text>
+  <rect x="30" y="404" width="900" height="18" fill="#16a34a" />
+  <text x="48" y="418" class="label" fill="#fff">VCC (GSM external VCC should be connected separately as recommended)</text>
 
-  <!-- Simple legend -->
-  <rect x="40" y="350" width="320" height="110" rx="6" class="device" />
-  <text x="60" y="370" class="lbl">Legend</text>
-  <text x="60" y="390" class="lbl">- Use common ground between Arduino and GSM power supply</text>
-  <text x="60" y="408" class="lbl">- GSM needs a dedicated power source capable of 1A+ peaks</text>
-  <text x="60" y="426" class="lbl">- Add 220Ω resistors for LEDs and appropriate resistor for buzzer if needed</text>
+  <!-- Legend -->
+  <text x="30" y="460" class="label">Legend:</text>
+  <text x="30" y="480" class="label">- Use 220 Ohm resistors for LEDs between pin and LED anode.</text>
+  <text x="30" y="498" class="label">- Use a dedicated power source for GSM module (capable of 1A+ peak current).</text>
+  <text x="30" y="516" class="label">- Ensure all grounds are common (Arduino, sensors, GSM).</text>
+
 </svg>
