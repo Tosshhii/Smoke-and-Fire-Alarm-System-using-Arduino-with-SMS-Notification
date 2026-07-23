@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+  <style>
+    .lbl { font: 12px/1.2 sans-serif; fill: #222; }
+    .device { fill: #f7f7f7; stroke: #333; stroke-width: 1.5px; }
+    .pin { stroke: #444; stroke-width: 1px; }
+    .wire { stroke: #c0392b; stroke-width: 2px; fill: none; }
+    .gnd { stroke: #2c3e50; stroke-width: 2px; }
+    .vcc { stroke: #27ae60; stroke-width: 2px; }
+  </style>
+
+  <!-- Arduino Uno -->
+  <rect x="40" y="40" width="220" height="160" rx="8" class="device" />
+  <text x="150" y="60" text-anchor="middle" class="lbl">Arduino Uno</text>
+  <text x="60" y="90" class="lbl">D2 Smoke</text>
+  <line x1="120" y1="95" x2="240" y2="95" class="wire" />
+  <text x="60" y="115" class="lbl">D3 Green LED</text>
+  <line x1="120" y1="120" x2="360" y2="120" class="wire" />
+  <text x="60" y="140" class="lbl">D4 Buzzer</text>
+  <line x1="120" y1="145" x2="360" y2="145" class="wire" />
+  <text x="60" y="165" class="lbl">D5 Red LED</text>
+  <line x1="120" y1="170" x2="360" y2="170" class="wire" />
+  <text x="60" y="190" class="lbl">D6 Flame</text>
+  <line x1="120" y1="195" x2="360" y2="195" class="wire" />
+  <text x="60" y="215" class="lbl">D7 GSM TX</text>
+  <line x1="120" y1="220" x2="520" y2="220" class="wire" />
+  <text x="60" y="240" class="lbl">D8 GSM RX</text>
+  <line x1="120" y1="245" x2="520" y2="245" class="wire" />
+
+  <!-- MQ-2 -->
+  <rect x="320" y="60" width="120" height="60" rx="6" class="device" />
+  <text x="380" y="80" text-anchor="middle" class="lbl">MQ-2</text>
+  <text x="380" y="98" text-anchor="middle" class="lbl">DATA -> D2</text>
+
+  <!-- LEDs and Buzzer -->
+  <rect x="320" y="110" width="120" height="120" rx="6" class="device" />
+  <text x="380" y="132" text-anchor="middle" class="lbl">LEDs & Buzzer</text>
+  <text x="380" y="152" text-anchor="middle" class="lbl">G: D3  Buzzer: D4</text>
+  <text x="380" y="170" text-anchor="middle" class="lbl">R: D5</text>
+
+  <!-- GSM Module -->
+  <rect x="520" y="180" width="220" height="110" rx="8" class="device" />
+  <text x="630" y="200" text-anchor="middle" class="lbl">GSM Module</text>
+  <text x="640" y="220" class="lbl">TX -> D7</text>
+  <text x="640" y="238" class="lbl">RX -> D8</text>
+  <text x="640" y="256" class="lbl">VCC -> External 4V</text>
+  <text x="640" y="274" class="lbl">GND -> Common GND</text>
+
+  <!-- Flame sensor -->
+  <rect x="320" y="260" width="120" height="60" rx="6" class="device" />
+  <text x="380" y="285" text-anchor="middle" class="lbl">Flame Sensor</text>
+  <text x="380" y="302" text-anchor="middle" class="lbl">DATA -> D6</text>
+
+  <!-- Ground rail -->
+  <line x1="40" y1="320" x2="760" y2="320" class="gnd" />
+  <text x="20" y="320" class="lbl">GND</text>
+  <line x1="520" y1="305" x2="520" y2="240" class="gnd" />
+  <circle cx="520" cy="305" r="3" fill="#2c3e50" />
+
+  <!-- VCC rail (GSM) -->
+  <line x1="520" y1="296" x2="760" y2="296" class="vcc" />
+  <text x="510" y="292" class="lbl">VCC (GSM)</text>
+
+  <!-- Simple legend -->
+  <rect x="40" y="350" width="320" height="110" rx="6" class="device" />
+  <text x="60" y="370" class="lbl">Legend</text>
+  <text x="60" y="390" class="lbl">- Use common ground between Arduino and GSM power supply</text>
+  <text x="60" y="408" class="lbl">- GSM needs a dedicated power source capable of 1A+ peaks</text>
+  <text x="60" y="426" class="lbl">- Add 220Ω resistors for LEDs and appropriate resistor for buzzer if needed</text>
+</svg>

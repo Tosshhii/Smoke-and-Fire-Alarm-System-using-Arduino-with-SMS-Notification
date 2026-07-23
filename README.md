@@ -33,6 +33,11 @@ Wiring (default pins used in this project)
 - GSM RX -> digital pin 8 (to Arduino TX pin used by SoftwareSerial)
 - GSM VCC/GND -> external power (ensure correct voltage and sufficient current)
 
+Wiring Diagram
+![Wiring Diagram](assets/wiring-diagram.svg)
+
+Caption: default pin mapping and recommended external GSM power connection. Adjust pins in `src/main.cpp` if your board uses different serial pins.
+
 Quick Start
 1) Configure
 - Edit `src/main.cpp` and set `phoneNumber` to the destination number for alerts (international format recommended).
